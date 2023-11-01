@@ -1,0 +1,19 @@
+---
+sources:
+  - OpenSearch:
+      name: "OpenSearch"
+      listen_addr: "0.0.0.0:9200"
+      chain:
+        - Tee:
+            switch_port: 1234
+            behavior: LogWarningOnMismatch
+            buffer_size: 10000
+            chain:
+              - QueryTypeFilter:
+                  DenyList: [Read]
+              - OpenSearchSinkSingle:
+                  remote_address: "172.16.1.3:9200"
+                  connect_timeout_ms: 3000
+        - OpenSearchSinkSingle:
+            remote_address: "172.16.1.2:9200"
+            connect_timeout_ms: 3000

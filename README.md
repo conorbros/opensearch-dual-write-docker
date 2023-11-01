@@ -1,0 +1,1 @@
+# opensearch-dual-write-docker

@@ -1,0 +1,2 @@
+main_log_level: "trace,shotover_proxy=trace"
+observability_interface: "0.0.0.0:9001"
